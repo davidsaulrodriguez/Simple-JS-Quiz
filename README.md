@@ -1,7 +1,7 @@
 # Simple JS Quiz
 
 ## Objective
-Build a simple quiz application powered by HTML5, CSS3 and JavaScript.
+As a homework assignment, I must build a simple quiz application powered by HTML5, CSS3 and JavaScript. The application must meet the minimum requirements setforth by the Acceptance Criteria below.
 
 ## License
 This application is licensed under the BSD 2 Clause license. [Read the License][license].
@@ -40,4 +40,4 @@ The following animation demonstrates the application functionality:
 
 ![code quiz](./screenshots/04-web-apis-homework-demo.gif)
 
-[license]: (./LICENSE.md)
+[license]: ./LICENSE.md
