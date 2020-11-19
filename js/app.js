@@ -12,4 +12,4 @@ const startBtn = document.getElementById('startGame');
 
 startBtn.addEventListener('click', function() {
     startBtn.style.display = 'none';
-})
+});

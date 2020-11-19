@@ -173,6 +173,9 @@ img {
 /* Media Queries */
 
 @media only screen and (max-width: 576px) {
+    .navbar a:hover{
+        border: none;
+    }
     .navbar .flex {
         flex-direction: column;
     }
