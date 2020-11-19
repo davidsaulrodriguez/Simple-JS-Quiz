@@ -16,18 +16,68 @@
             <h1 class="logo">Simple JS Quiz</h1>
             <nav>
                 <ul>
-                    <li><a href="./">Home</a></li>
-                    <li><a href="highscores.html">High Scores</a></li>
+                    <li><a href="./" class="active">Home</a></li>
+                    <li><a href="#" id="highScores">High Scores</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <div class="container">
+    <div class="container flex-center flex-column">
 
         <!-- The Start Button -->
         <div class="start-button">
             <button class="btn-primary" id="startGame">Start Quiz</button>
+        </div>
+
+        <!-- Some Rules -->
+
+        <div id="rules" class="rules card justify-center">
+            <div class="card-title">
+                <h2>Lorem, ipsum.</h2>
+            </div>
+            <div class="card-content">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="card-btns">
+                <button id="exit" class="btn-primary">Exit</button>
+                <button id="continueOn" class="btn-primary">Continue</button>
+            </div>
+        </div>
+
+        <!-- The Quiz Content -->
+
+        <div id="quiz" class="card quiz justifty-center">
+            <h2 id="theQuestion">Lorem ipsum dolor sit amet consectetur adipisicing?</h2>
+            <div class="answerContainer">
+                <div class="answerContent">Answer 1</div>
+            </div>
+            <div class="answerContainer">
+                <div class="answerContent">Answer 2</div>
+            </div>
+            <div class="answerContainer">
+                <div class="answerContent">Answer 3</div>
+            </div>
+            <div class="answerContainer">
+                <div class="answerContent">Answer 4</div>
+            </div>
+        </div>
+
+        <!-- High Scores -->
+
+        <div id="highScoresView" class="highScores card justifty-center">
+            <div class="card-title">
+                <h2>High Scores</h2>
+            </div>
+            <div class="card-content highscores">
+                <p>High Scores will be displayed here.</p>
+            </div>
+            <div class="card-btns flex-center">
+                <button id="clearScores" class="btn-primary">Clear Scores</button>
+            </div>
         </div>
     </div>
     
