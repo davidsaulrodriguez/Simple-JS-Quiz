@@ -123,6 +123,7 @@ img {
 
 .quiz,
 .rules,
+.gameOver,
 .highScores {
     max-width: 560px;
     display: none;
