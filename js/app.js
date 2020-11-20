@@ -5,40 +5,110 @@
  * License: BSD-2-Clause
  */
 
-// DOM Selectors
-const highScoresView = document.getElementById('highScoresView');
-const highScores = document.getElementById('highScores');
-const continueOn = document.getElementById('continueOn');
-const cleanUp = document.getElementById('clearScores');
-const startBtn = document.getElementById('startGame');
-const rules = document.getElementById('rules');
-const exit = document.getElementById('exit');
-const quiz = document.getElementById('quiz');
+// The DOM Selectors for Views
+const HIGH_SCORES_VIEW = document.getElementById('highScoresView');
+const GAME_OVER = document.getElementById('gameOver');
+const RULES = document.getElementById('rules');
+const QUIZ = document.getElementById('quiz');
+
+// The DOM Selectors for buttons and links
+const HIGH_SCORES_BTN = document.getElementById('highScores');
+const CONTINUE_ON = document.getElementById('continueOn');
+const PLAY_AGAIN = document.getElementById('playAgain');
+const CLEAN_UP = document.getElementById('clearScores');
+const START_BTN = document.getElementById('startGame');
+const EXIT = document.getElementById('exit');
+
+// The DOM Selectors for the quiz itself
+const THE_QUESTION = document.getElementById('theQuestion');
+const ANSWER_CONTENT = Array.from(document.getElementsByClassName('answerContent'));
+
+// Set some default variables
+let currentQuestion = {}
+let isAcceptingAnswers = false;
+let score = 0;
+let questionCounter = 0;
+let availableQuestions = [];
+
+// Some constants for the game's functionality
+const MAX_QUESTIONS = 10;
+
+// Functions for the game
+
+function startQuiz() {
+    questionCounter = 0;
+    score = 0;
+    availableQuestions = [... questions];
+    console.log(availableQuestions);
+    getNewQuestion();
+}
+
+function getNewQuestion() {
+    if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+        return gameOver();
+    }
+    questionCounter++;
+    const QUESTION_INDEX = Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion = availableQuestions[QUESTION_INDEX];
+    THE_QUESTION.innerText = currentQuestion.question;
+
+    ANSWER_CONTENT.forEach( answer => {
+        const NUMBER = answer.dataset['number'];
+        answer.innerText = currentQuestion['option' + NUMBER]
+    });
+
+    availableQuestions.splice(QUESTION_INDEX, 1);
+
+    isAcceptingAnswers = true;
+}
+
+ANSWER_CONTENT.forEach( answer => {
+    answer.addEventListener('click', (e) => {
+        if (!isAcceptingAnswers) return;
+
+        isAcceptingAnswers = false;
+        const SELECTED_OPTION = e.target;
+        const SELECTED_ANSWER = SELECTED_OPTION.dataset['number'];
+
+        getNewQuestion();
+    });
+});
+
+function gameOver() {
+    QUIZ.style.display = 'none';
+    GAME_OVER.style.display = 'block';
+}
 
 // Event Listeners
 
-startBtn.addEventListener('click', function() {
-    startBtn.style.display = 'none';
-    rules.style.display = 'block';
+START_BTN.addEventListener('click', () => {
+    START_BTN.style.display = 'none';
+    RULES.style.display = 'block';
 });
 
-continueOn.addEventListener('click', function() {
-    rules.style.display = 'none';
-    quiz.style.display = 'block';
+CONTINUE_ON.addEventListener('click', () => {
+    RULES.style.display = 'none';
+    QUIZ.style.display = 'block';
 });
 
-exit.addEventListener('click', function() {
-    rules.style.display = 'none';
-    startBtn.style.display = 'block';
+EXIT.addEventListener('click', () => {
+    RULES.style.display = 'none';
+    START_BTN.style.display = 'block';
 });
 
-highScores.addEventListener('click', function() {
-    startBtn.style.display = 'none';
-    rules.style.display = 'none';
-    quiz.style.display = 'none';
-    highScoresView.style.display = 'block';
+HIGH_SCORES_BTN.addEventListener('click', () => {
+    START_BTN.style.display = 'none';
+    RULES.style.display = 'none';
+    QUIZ.style.display = 'none';
+    HIGH_SCORES_VIEW.style.display = 'block';
 });
 
-cleanUp.addEventListener('click', function() {
+CLEAN_UP.addEventListener('click', () => {
     localStorage.clear();
 });
+
+PLAY_AGAIN.addEventListener('click', () => {
+    window.location.reload();   
+});
+
+startQuiz();
