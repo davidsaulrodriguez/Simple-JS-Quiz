@@ -50,6 +50,8 @@ img {
     --background-color: #eeeeee;
     --third-color: #008669;
     --fourth-color: #00c686;
+    --valid: #0f0;
+    --error: #f00;
 
 }
 
@@ -105,7 +107,6 @@ img {
 
 .answerContainer:hover {
     transform: scale(0.995);
-    background-color: var(--fourth-color);
 }
 
 .answerContainer:first-of-type {
@@ -230,6 +231,14 @@ img {
 
 .active {
     color: var(--fourth-color) !important;
+}
+
+.correct {
+    background-color: var(--valid);
+}
+
+.incorrect {
+    background-color: var(--error);
 }
 
 /* Media Queries */
