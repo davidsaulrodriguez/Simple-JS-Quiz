@@ -22,6 +22,8 @@ const EXIT = document.getElementById('exit');
 // The DOM Selectors for the quiz itself
 const THE_QUESTION = document.getElementById('theQuestion');
 const ANSWER_CONTENT = Array.from(document.getElementsByClassName('answerContent'));
+const QUESTION_COUNTER_TEXT = document.getElementById('questionCounterText');
+const SCORE_COUNTER_TEXT = document.getElementById('scoreCounterText');
 
 // Set some default variables
 let currentQuestion = {}
@@ -32,6 +34,7 @@ let availableQuestions = [];
 
 // Some constants for the game's functionality
 const MAX_QUESTIONS = 10;
+const POINTS_FOR_CORRECT = 10;
 
 // Functions for the game
 
@@ -47,6 +50,7 @@ function getNewQuestion() {
         return gameOver();
     }
     questionCounter++;
+    QUESTION_COUNTER_TEXT.innerHTML = `${questionCounter}/${MAX_QUESTIONS}`;
     const QUESTION_INDEX = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[QUESTION_INDEX];
     THE_QUESTION.innerText = currentQuestion.question;
@@ -70,6 +74,8 @@ ANSWER_CONTENT.forEach( answer => {
         const SELECTED_ANSWER = SELECTED_OPTION.dataset['number'];
 
         const CLASS_TO_APPLY = SELECTED_ANSWER == currentQuestion.answer ? 'correct' : 'incorrect';
+
+        if (CLASS_TO_APPLY === 'correct') incrementScore(POINTS_FOR_CORRECT);
         
         SELECTED_OPTION.parentElement.classList.add(CLASS_TO_APPLY);
         
@@ -83,6 +89,11 @@ ANSWER_CONTENT.forEach( answer => {
 function gameOver() {
     QUIZ.style.display = 'none';
     GAME_OVER.style.display = 'block';
+}
+
+function incrementScore (num) {
+    score += num;
+    SCORE_COUNTER_TEXT.innerText = score;
 }
 
 // Event Listeners
@@ -106,6 +117,7 @@ HIGH_SCORES_BTN.addEventListener('click', () => {
     START_BTN.style.display = 'none';
     RULES.style.display = 'none';
     QUIZ.style.display = 'none';
+    GAME_OVER.style.display = 'none';
     HIGH_SCORES_VIEW.style.display = 'block';
 });
 
@@ -114,7 +126,7 @@ CLEAN_UP.addEventListener('click', () => {
 });
 
 PLAY_AGAIN.addEventListener('click', () => {
-    window.location.reload();   
+    window.location.reload();
 });
 
 startQuiz();
