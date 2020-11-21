@@ -35,7 +35,7 @@ ul, li {
 
 body {
     line-height: 1.6em;
-    background-color: var(--primary-color);
+    background-color: var(--background-color);
 }
 
 img {
@@ -45,17 +45,25 @@ img {
 /* Setup Color Variables */
 
 :root {
-    --primary-color: #17a2b8;
-    --nav-primary-color: #093e46;
+    --primary-color: #458a9c;
+    --secondary-color: #004a5b;
+    --background-color: #eeeeee;
+    --third-color: #008669;
+    --fourth-color: #00c686;
+    --valid: #0f0;
+    --error: #f00;
+
 }
 
 /* Navigation Styling */
 
 .navbar {
-    background-color: var(--nav-primary-color);
+    background-color: var(--secondary-color);
     height: 70px;
     color: #fff;
     box-shadow: 0 0 5px #000;
+    width: 100vw;
+    max-width: 100%;
 }
 
 .navbar .flex {
@@ -78,11 +86,48 @@ img {
 }
   
 .navbar a:hover {
-    border-bottom: 2px solid #fff;
+    color: var(--fourth-color);
+    border-bottom: 2px solid var(--fourth-color);
 }
 
 .logo {
     margin: 0 20px;
+    user-select: none;
+}
+
+/* Styling for the rules and quiz content */
+
+.answerContainer {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.answerContainer:hover {
+    transform: scale(0.995);
+}
+
+.answerContainer:first-of-type {
+    border-radius: 10px 10px 0 0;
+}
+
+.answerContainer:last-of-type {
+    border-radius: 0 0 10px 10px;
+}
+
+.answerContent {
+    padding: 10px;
+    width: 100%;
+}
+
+.quiz,
+.rules,
+.gameOver,
+.highScores {
+    max-width: 560px;
+    display: none;
 }
 
 /* Utility Classes */
@@ -103,6 +148,12 @@ img {
     border: 0;
 }
 
+p.version {
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
 .card-content {
     font-size: 18px;
     margin: 20px 0;
@@ -110,7 +161,18 @@ img {
 
 .card-btns {
     display: flex;
-    justify-content: space-between;.
+    justify-content: space-between;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.container ~ * {
+    width: 100%;
 }
 
 .flex {
@@ -119,6 +181,32 @@ img {
     justify-content: space-between;
     align-items: center;
     height: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-start {
+    justify-content: start;
+}
+
+.flex-end {
+    justify-content: end;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-around {
+    justify-content: space-around;
+}
+
+.justify-center {
+    justify-content: center;
 }
   
 .grid {
@@ -131,10 +219,10 @@ img {
 }
 
 .btn-primary {
-    background-color: #093e46;
-    font-weight: bold;
-    font-size: 12px;
-    border: 0;
+    background-color: var(--third-color);
+    font-weight: 500;
+    font-size: 18px;
+    border: 1px solid #fff;
     color: #fff;
     padding: 10px;
     border-radius: 5px;
@@ -142,8 +230,47 @@ img {
     cursor: pointer;
 }
 
-.form-control {
-    display: grid;
-    justify-content: start;
-    align-items: center;
+.btn-primary:hover {
+    transform: scale(0.98);
+    background-color: var(--fourth-color);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.active {
+    color: var(--fourth-color) !important;
+}
+
+.correct {
+    background-color: var(--valid);
+}
+
+.incorrect {
+    background-color: var(--error);
+}
+
+.hud {
+    height: 20%;
+}
+
+.hud-title {
+    font-size: 20px;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 647px) {
+    .navbar a:hover{
+        border: none;
+    }
+    .navbar .flex {
+        flex-direction: column;
+    }
+
+    .card-content,
+    .card-btns {
+        font-size: 1rem;
+    }
 }
