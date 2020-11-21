@@ -69,7 +69,14 @@ ANSWER_CONTENT.forEach( answer => {
         const SELECTED_OPTION = e.target;
         const SELECTED_ANSWER = SELECTED_OPTION.dataset['number'];
 
-        getNewQuestion();
+        const CLASS_TO_APPLY = SELECTED_ANSWER == currentQuestion.answer ? 'correct' : 'incorrect';
+        
+        SELECTED_OPTION.parentElement.classList.add(CLASS_TO_APPLY);
+        
+        setTimeout(() => {
+            SELECTED_OPTION.parentElement.classList.remove(CLASS_TO_APPLY);
+            getNewQuestion();
+        }, 1000);
     });
 });
 
