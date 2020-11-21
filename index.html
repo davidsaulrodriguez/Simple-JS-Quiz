@@ -17,7 +17,8 @@
             <nav>
                 <ul>
                     <li><a href="./" class="active">Home</a></li>
-                    <li><a href="#" id="highScores">High Scores</a></li>
+                    <li><a href="#" id="highScores">Leaderboard</a></li>
+                    <li><a href="./about.html">About</a></li>
                 </ul>
             </nav>
         </div>
@@ -51,6 +52,20 @@
         <!-- The Quiz Content -->
 
         <div id="quiz" class="card quiz justifty-center">
+            <div class="hud flex flex-around">
+                <div class="hud-item">
+                    <p class="hud-title text-center">Question</p>
+                    <h2 class="hud-main-text text-center" id="questionCounterText"></h2>
+                </div>
+                <div class="hud-item">
+                    <p class="hud-title text-center">Time Left</p>
+                    <h2 class="hud-main-text text-center">0:00</h2>
+                </div>
+                <div class="hud-item">
+                    <p class="hud-title text-center">Score</p>
+                    <h2 class="hud-main-text text-center" id="scoreCounterText">0</h2>
+                </div>
+            </div>
             <h2 id="theQuestion">Lorem ipsum dolor sit amet consectetur adipisicing?</h2>
             <div class="answerContainer">
                 <div class="answerContent" data-number="1">Answer 1</div>
