@@ -148,6 +148,12 @@ img {
     border: 0;
 }
 
+p.version {
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
 .card-content {
     font-size: 18px;
     margin: 20px 0;
@@ -193,6 +199,10 @@ img {
 .flex-center {
     justify-content: center;
     align-items: center;
+}
+
+.flex-around {
+    justify-content: space-around;
 }
 
 .justify-center {
@@ -241,9 +251,17 @@ img {
     background-color: var(--error);
 }
 
+.hud {
+    height: 20%;
+}
+
+.hud-title {
+    font-size: 20px;
+}
+
 /* Media Queries */
 
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 647px) {
     .navbar a:hover{
         border: none;
     }
