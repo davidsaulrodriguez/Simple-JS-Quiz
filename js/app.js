@@ -38,13 +38,13 @@ let isAcceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
-let totalTime = 180;
+let totalTime = 120;
 let min = 0;
 let sec = 0;
 let counter = 0;
 
 // Some constants for the game's functionality
-const MAX_QUESTIONS = 3;
+const MAX_QUESTIONS = 10;
 const POINTS_FOR_CORRECT = 10;
 const TIME_DEDUCTION = 20;
 const MAX_HIGH_SCORES = 5;
