@@ -98,10 +98,10 @@ const questions = [
     },
     {
         question:   'How can you add a comment in a JavaScript?',
-        option1:    '\\ This is a comment',
-        option1:    '<!-- This is a comment -->',
-        option1:    '// This is a comment',
-        option1:    '-- This is a comment',
+        option1:    `\\ This is a comment`,
+        option1:    `<!-- This is a comment -->`,
+        option1:    `// This is a comment`,
+        option1:    `-- This is a comment`,
         answer:     3
     }
 ];
