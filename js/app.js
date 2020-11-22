@@ -40,7 +40,7 @@ let counter = 0;
 // Some constants for the game's functionality
 const MAX_QUESTIONS = 10;
 const POINTS_FOR_CORRECT = 10;
-const TIME_DEDUCTION = 10;
+const TIME_DEDUCTION = 20;
 
 // Functions for the game
 
@@ -123,7 +123,11 @@ function gameTimer() {
             gameOver();
         }
 
-        GAME_TIMER.innerHTML = `${min}:${sec}`;
+        if (sec <= 9) {
+            GAME_TIMER.innerHTML = `${min}:0${sec}`;
+        } else {
+            GAME_TIMER.innerHTML = `${min}:${sec}`;
+        }
     }, 1000);
 }
 
