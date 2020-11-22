@@ -45,8 +45,7 @@ const TIME_DEDUCTION = 10;
 // Functions for the game
 
 function startQuiz() {
-    questionCounter = 0;        console.log("min = " + min);
-    console.log("sec = " + sec);
+    questionCounter = 0;
     score = 0;
     availableQuestions = [... questions];
     getNewQuestion();
@@ -119,7 +118,7 @@ function gameTimer() {
         min = Math.floor((totalTime - counter) / 60);
         sec = totalTime - min * 60 - counter;
 
-        if (counter <= totalTime) {
+        if (counter >= totalTime) {
             clearInterval(timer);
             gameOver();
         }
