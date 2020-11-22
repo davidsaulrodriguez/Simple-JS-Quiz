@@ -124,10 +124,66 @@ img {
 
 .quiz,
 .rules,
-.gameOver,
-.highScores {
+.gameOver {
     max-width: 560px;
     display: none;
+}
+
+.highScores {
+    max-width: 560px;
+}
+
+/* Game Over Scene */
+
+.yourScore {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+input {
+    outline: none;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid var(--primary-color);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input::placeholder {
+    font-weight: bold;
+    font-size: 18px;
+    
+}
+
+.btn-submit {
+    background-color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    border: 1px solid var(--third-color);
+    color: var(--third-color);
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    transform: scale(0.98);
+    background-color: var(--fourth-color);
+}
+
+.btn-submit[disabled]:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* High Scores List */
+
+.high-score {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
 }
 
 /* Utility Classes */
