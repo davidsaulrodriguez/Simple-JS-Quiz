@@ -17,7 +17,7 @@
             <nav>
                 <ul>
                     <li><a href="./" class="active">Home</a></li>
-                    <li><a href="#" id="highScores">Leaderboard</a></li>
+                    <li><a href="./highscores.html" id="highScores">Leaderboard</a></li>
                     <li><a href="./about.html">About</a></li>
                 </ul>
             </nav>
@@ -35,13 +35,11 @@
 
         <div id="rules" class="rules card justify-center">
             <div class="card-title">
-                <h2>Lorem, ipsum.</h2>
+                <h2>Quiz Rules</h2>
             </div>
             <div class="card-content">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                <p>You will have 2 minutes to complete 10 questions</p>
+                <p>20 seconds will be deducted for each incorrect answer</p>
             </div>
             <div class="card-btns">
                 <button id="exit" class="btn-primary">Exit</button>
@@ -87,31 +85,18 @@
             <div class="card-title">
                 <h2>Game Over</h2>
             </div>
-            <div class="card-content">
-                <p>Add yourself to the Score Board or Play Again.</p>
-            </div>
-            <div class="card-btns">
-                <button id="playAgain" class="btn-primary">Play Again</button>
-                <button id="addScore" class="btn-primary">Add Score</button>
-            </div>
-        </div>
-
-        <!-- High Scores -->
-
-        <div id="highScoresView" class="highScores card justifty-center">
-            <div class="card-title">
-                <h2>High Scores</h2>
-            </div>
-            <div class="card-content">
-                <p>High Scores will be displayed here.</p>
-            </div>
-            <div class="card-btns flex-center">
-                <button id="clearScores" class="btn-primary">Clear Scores</button>
+            <div class="card-content text-center">
+                <h3>Your Score</h3>
+                <p class="yourScore" id="finalScore"></p>
+                <form>
+                    <input type="text" name="username" id="username" placeholder="Enter Your Name.">
+                    <input type="submit" value="Save" class="btn-submit" onclick="saveHighScores(event)" id="saveScoreBtn">
+                </form>
             </div>
         </div>
     </div>
     
-    <script defer src="./js/questions.js"></script>
+    <script src="./js/questions.js"></script>
     <script defer src="./js/app.js"></script>
 </body>
 </html>

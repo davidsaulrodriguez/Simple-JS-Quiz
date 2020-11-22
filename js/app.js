@@ -14,7 +14,7 @@ const QUIZ = document.getElementById('quiz');
 // The DOM Selectors for buttons and links
 const HIGH_SCORES_BTN = document.getElementById('highScores');
 const CONTINUE_ON = document.getElementById('continueOn');
-const PLAY_AGAIN = document.getElementById('playAgain');
+// const PLAY_AGAIN = document.getElementById('playAgain');
 const CLEAN_UP = document.getElementById('clearScores');
 const START_BTN = document.getElementById('startGame');
 const EXIT = document.getElementById('exit');
@@ -25,6 +25,12 @@ const ANSWER_CONTENT = Array.from(document.getElementsByClassName('answerContent
 const QUESTION_COUNTER_TEXT = document.getElementById('questionCounterText');
 const SCORE_COUNTER_TEXT = document.getElementById('scoreCounterText');
 const GAME_TIMER = document.getElementById('theTimer');
+const username = document.getElementById('username');
+const saveScoreBtn = document.getElementById('saveScoreBtn');
+const mostRecentScore = localStorage.getItem('mostRecentScore');
+const finalScore = document.getElementById('finalScore');
+const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+const highScoresList = document.getElementById('highScoresList');
 
 // Set some default variables
 let currentQuestion = {}
@@ -32,7 +38,7 @@ let isAcceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
-let totalTime = 180;
+let totalTime = 120;
 let min = 0;
 let sec = 0;
 let counter = 0;
@@ -40,7 +46,8 @@ let counter = 0;
 // Some constants for the game's functionality
 const MAX_QUESTIONS = 10;
 const POINTS_FOR_CORRECT = 10;
-const TIME_DEDUCTION = 10;
+const TIME_DEDUCTION = 20;
+const MAX_HIGH_SCORES = 5;
 
 // Functions for the game
 
@@ -53,6 +60,7 @@ function startQuiz() {
 
 function getNewQuestion() {
     if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+        localStorage.setItem('mostRecentScore', score);
         return gameOver();
     }
     questionCounter++;
@@ -97,6 +105,7 @@ ANSWER_CONTENT.forEach( answer => {
 });
 
 function gameOver() {
+    finalScore.innerText = SCORE_COUNTER_TEXT.innerText;
     QUIZ.style.display = 'none';
     GAME_OVER.style.display = 'block';
 }
@@ -108,8 +117,7 @@ function incrementScore (num) {
 
 function decrementTime (num) {
     totalTime -= num;
-    console.log(totalTime);
-}
+};
 
 // Timer Code
 function gameTimer() {
@@ -118,15 +126,47 @@ function gameTimer() {
         min = Math.floor((totalTime - counter) / 60);
         sec = totalTime - min * 60 - counter;
 
-        if (counter >= totalTime) {
+        if (counter >= totalTime) {mostRecentScore
             clearInterval(timer);
             gameOver();
         }
 
-        GAME_TIMER.innerHTML = `${min}:${sec}`;
+        if (sec <= 9) {
+            GAME_TIMER.innerHTML = `${min}:0${sec}`;
+        } else {
+            GAME_TIMER.innerHTML = `${min}:${sec}`;
+        }
     }, 1000);
 }
 
+// Save High Score
+
+function saveHighScores(event) {
+    event.preventDefault();
+
+    const score = {
+        score: SCORE_COUNTER_TEXT.innerText,
+        name: username.value
+    };
+    highScores.push(score);
+
+    highScores.sort( (a,b) => {
+        return b.score - a.score;
+    });
+
+    highScores.splice(5);
+
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    return window.location.assign('./highscores.html');
+}
+
+function afterSave() {
+    START_BTN.style.display = 'none';
+    RULES.style.display = 'none';
+    QUIZ.style.display = 'none';
+    GAME_OVER.style.display = 'none';
+    HIGH_SCORES_VIEW.style.display = 'block';
+}
 
 // Event Listeners
 
@@ -154,12 +194,8 @@ HIGH_SCORES_BTN.addEventListener('click', () => {
     HIGH_SCORES_VIEW.style.display = 'block';
 });
 
-CLEAN_UP.addEventListener('click', () => {
-    localStorage.clear();
-});
-
-PLAY_AGAIN.addEventListener('click', () => {
-    window.location.reload();
+username.addEventListener('keyup', () => {
+    saveScoreBtn.disabled = !username.value;
 });
 
 startQuiz();
